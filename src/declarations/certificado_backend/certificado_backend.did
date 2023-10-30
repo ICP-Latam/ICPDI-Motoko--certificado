@@ -1,0 +1,22 @@
+type Certifica = 
+ record {
+   alumno: text;
+   curso: text;
+   fecha: text;
+   instructor: text;
+   lugar: text;
+   modalidad: text;
+   usuario: text;
+ };
+service : {
+  actualizaCertificado: (text, text, text, text, text, text, text) -> (bool);
+  borraCertificado: (text) -> (bool);
+  crearCertificado: (text, text, text, text, text, text) -> ();
+  getCerificaId: () -> (nat32) query;
+  getCertificado: (text) -> (opt Certifica) query;
+  getCertificados: () -> (vec record {
+                                text;
+                                Certifica;
+                              }) query;
+  whoami: () -> (principal) query;
+}

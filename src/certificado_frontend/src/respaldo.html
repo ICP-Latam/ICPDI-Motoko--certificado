@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Registros de Certificados de Capacitación</title>
+    <base href="/" />
+    <link rel="icon" href="favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <main>
+      <img src="logo2.svg" alt="DFINITY logo" />
+      <br />
+      <br />
+    
+      <table>
+        <tr>
+        <td>
+          <form id="uno" action ='#'>
+            <label for="curso">Introduce el nombre del curso: &nbsp;</label>
+            <input id="curso" alt="Curso" type="text" /><br />
+            <label for="instructor">Introduce el nombre del instructor: &nbsp;</label>
+           <input id="instructor" alt="Instructor" type="text" /><br />
+           <label for="alumno">Captura el nombre del alumno: &nbsp;</label>
+           <input id="alumno" alt="Alumno" type="text" /><br />
+            <label for="fecha">Captura la fecha del curso: &nbsp;</label>
+            <input id="fecha" alt="fecha" type="text" /><br />
+           <label for="modalidad">Modalidad del curso: &nbsp;</label>
+           <input id="modalidad" alt="fecha" type="text" /><br />
+            <label for="lugar">Lugar donde se realizó el curso: &nbsp;</label>
+           <input id="lugar" alt="fecha" type="text" /><br /><br />
+           <button id='crear' type="submit">Registra el certificado</button>
+          </form>
+        </td>
+      </tr>
+      <tr> 
+        <td>
+          <form id="dos" action ='#'>
+            <label for="id">Introduce el número del certificado a borrar: &nbsp;</label>
+            <input id="id" alt="Id" type="text" /><br />
+           <button id='borrar' type="submit">Borra el certificado</button>
+          </form>
+        </td>
+      </tr>
+      <tr> 
+        <td>
+          <form id="tres" action ='#'>
+            <label for="id2">Introduce el número del certificado a buscar: &nbsp;</label>
+            <input id="id2" alt="Id" type="text" /><br />
+           <button id='buscar' type="submit">Busca el certificado</button>
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <form id="cuatro" action ='#'>
+            <label for="id1">Introduce el número del certificado a actualizar: &nbsp;</label>
+            <input id="id1" alt="Id" type="text" /><br />
+            <label for="curso1">Introduce el nombre del curso: &nbsp;</label>
+            <input id="curso1" alt="Curso" type="text" /><br />
+            <label for="instructor1">Introduce el nombre del instructor: &nbsp;</label>
+           <input id="instructor1" alt="Instructor" type="text" /><br />
+           <label for="alumno1">Captura el nombre del alumno: &nbsp;</label>
+           <input id="alumno1" alt="Alumno" type="text" /><br />
+            <label for="fecha1">Captura la fecha del curso: &nbsp;</label>
+            <input id="fecha1" alt="fecha" type="text" /><br />
+           <label for="modalidad1">Modalidad del curso: &nbsp;</label>
+           <input id="modalidad1" alt="fecha" type="text" /><br />
+            <label for="lugar1">Lugar donde se realizó el curso: &nbsp;</label>
+           <input id="lugar1" alt="fecha" type="text" /><br /><br />
+           <button id='actualizar' type="submit">Actualiza el certificado</button>
+        </td>
+        </tr>
+        <tr>
+        <td>
+          <form id="cinco" action ='#'>
+              <button id='enlistar' type="submit">Enlista los certificados</button>
+            </form>
+          <section id="listado"></section>
+        </td>
+        </tr>
+      
+    </table>
+    </main>
+  </body>
+</html>
+
+<script defer src="index.js"></script>
+
+document.querySelector("dos").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const button = e.target.querySelector("borrar");
+  
+    button.setAttribute("disabled", true);
+    const id = document.getElementById("id").value.toString();
+  
+    const greeting = await certificado_backend.borraCertificado(id);
+  
+    button.removeAttribute("disabled");
+    if(greeting){
+      window.alert("Certificado Borrado");
+    }else{
+      window.alert("Certificado No Borrado");
+    }
+   
+  
+    return false;
+  });
+  
+  document.querySelector("tres").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const button = e.target.querySelector("buscar");
+  
+    button.setAttribute("disabled", true);
+    const id = document.getElementById("id2").value.toString();
+  
+    const greeting = await certificado_backend.getCertificado(id);
+  
+    window.alert(greeting);
+  
+    return false;
+  });
+  
+  document.querySelector("cuatro").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const button = e.target.querySelector("actualizar");
+    const id = document.getElementById("id1").value.toString();
+    const curso = document.getElementById("curso1").value.toString();
+    const instructor = document.getElementById("instructor1").value.toString();
+    const alumno = document.getElementById("alumno1").value.toString();
+    const fecha = document.getElementById("fecha1").value.toString();
+    const modalidad = document.getElementById("modalidad1").value.toString();
+    const lugar = document.getElementById("lugar1").value.toString();
+   
+    button.setAttribute("disabled", true);
+  
+    const greeting = await certificado_backend.actualizaCertificado(id,curso,instructor,alumno, fecha, modalidad, lugar);
+  
+    button.removeAttribute("disabled");
+  
+    if(greeting){
+      window.alert("Certificado Actualizado");
+    }else{
+      window.alert("Certificado No Actualizado");
+    }
+  
+    return false;
+  });
+  
+  document.querySelector("cinco").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const button = e.target.querySelector("enlistar");
+  
+    button.setAttribute("disabled", true);
+  
+    const greeting = await certificado_backend.getCertificados();
+  
+    button.removeAttribute("disabled");
+  
+    window.alert(greeting);
+  
+    return false;
+  });
+  
+  document.getElementById("greeting").innerText = greeting;

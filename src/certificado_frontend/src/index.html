@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Registros de Certificados de Capacitación</title>
+    <base href="/" />
+    <link rel="icon" href="favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <main>
+      <img src="logo2.svg" alt="DFINITY logo" />
+      <br />
+      <br />
+      <form action="#">
+        <p>Selecciona el método que vas a ejecutar: &nbsp;</p><br />
+        <table>
+          <tr><td><input type="radio" id="crear" name="opcion" value="CREAR">
+           <label for="crear">CREAR CERTIFICADO &nbsp;</label><br><br /></td>
+          <td><input type="radio" id="borrar" name="opcion" value="BORRAR">
+            <label for="borrar">BORRAR CERTIFICADO &nbsp;</label><br><br /></td></tr>
+            <tr><td><input type="radio" id="actualizar" name="opcion" value="ACTUALIZAR">
+              <label for="actualizar">ACTUALIZAR CERTIFICADO &nbsp;</label><br /><br /></td>
+            <td><input type="radio" id="leer" name="opcion" value="LEER">
+              <label for="leer">LEER CERTIFICADO &nbsp;</label><br><br /></td></tr>
+              <tr><td><input type="radio" id="listar" name="opcion" value="LISTAR">
+                <label for="listar">ENLISTAR CERTIFICADOS &nbsp;</label><br /><br /></td></tr>       
+        </table>
+        <label for="id">Introduce el id del certificado a buscar/acualizar: &nbsp;</label>
+        <input id="id" alt="ID" type="text" /><br />
+        <label for="curso">Introduce el nombre del curso: &nbsp;</label>
+        <input id="curso" alt="Curso" type="text" /><br />
+        <label for="instructor">Introduce el nombre del instructor: &nbsp;</label>
+        <input id="instructor" alt="Instructor" type="text" /><br />
+        <label for="alumno">Captura el nombre del alumno: &nbsp;</label>
+        <input id="alumno" alt="Alumno" type="text" /><br />
+        <label for="fecha">Captura la fecha del curso: &nbsp;</label>
+        <input id="fecha" alt="fecha" type="text" /><br />
+        <label for="modalidad">Modalidad del curso: &nbsp;</label>
+        <input id="modalidad" alt="fecha" type="text" /><br />
+        <label for="lugar">Lugar donde se realizó el curso: &nbsp;</label>
+        <input id="lugar" alt="fecha" type="text" /><br /><br />
+        <button type="submit"> Realiza la Accion</button>
+      </form>
+    </main>
+    <section id="Resultados"></section>
+    
+  </body>
+</html>
+
